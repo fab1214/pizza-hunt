@@ -37,11 +37,11 @@ const PizzaSchema = new Schema(
   },
 });
 
-//virtual added to access number of comments on a pizza
+//virtual added to access number of comments on a pizza and total replies
 //schema name.virtual('name of field').get(function(){
 PizzaSchema.virtual("commentCount").get(function () {
   //return comment.length
-  return this.comments.length;
+  return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0)
 });
 
 //create the 'Pizza' model using the PizzaSchema
