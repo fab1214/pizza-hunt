@@ -28,7 +28,7 @@ const commentController = {
       { _id: params.commentId },
       //push replies body into replies array (creates :replyId)
       { $push: { replies: body } },
-      { new: true }
+      { new: true, runValidators: true }
     )
       .then((dbPizzaData) => {
         if (!dbPizzaData) {
